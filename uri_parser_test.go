@@ -15,6 +15,11 @@ func TestParse(t *testing.T) {
 		{"GET", "/cam/users/4152bd3d-9121-4889-b683-6ee72b8e3719/profiles", "/cam/users/{user_id}/profiles"},
 		{"GET", "/cam/companies/4152bd3d-9121-4889-b683-6ee72b8e3719/modules", "/cam/companies/{company_id}/modules"},
 		{"PATCH", "/cms/apolices/4152bd3d-9121-4889-b683-6ee72b8e3719/lives", "/cms/apolices/{apolice_id}/lives"},
+		// IDs numéricos (serial do banco) também viram placeholder — regressão do
+		// DELETE /cam/users/{user_id}/profiles/{profile_id} (profile_id = 11).
+		{"DELETE", "/cam/users/4152bd3d-9121-4889-b683-6ee72b8e3719/profiles/11", "/cam/users/{user_id}/profiles/{profile_id}"},
+		{"GET", "/cam/profiles/7/modules/3", "/cam/profiles/{profile_id}/modules/{module_id}"},
+		{"GET", "/companies/42/categories/7", "/companies/{company_id}/categories/{category_id}"},
 	}
 
 	for _, tt := range tests {
